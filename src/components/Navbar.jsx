@@ -1,8 +1,21 @@
-import "./style/Navbar.css"
+import { Menu } from "lucide-react";
+import "./style/Navbar.css";
 
-const Navbar = () => {
+const Navbar = ({ onToggleSidebar }) => {
   return (
     <header className="navbar">
+      <button
+        onClick={onToggleSidebar}
+        style={{
+          background: "none",
+          border: "none",
+          cursor: "pointer",
+          display: "flex",
+          alignItems: "center",
+        }}
+      >
+        <Menu size={22} />
+      </button>
       <ul>
         <li className="active">Product</li>
         <li>Brands</li>
