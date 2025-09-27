@@ -1,0 +1,106 @@
+.product-details-page {
+  padding: 40px;
+  background-color: #f5f6fa;
+}
+
+.back-link {
+  background: none;
+  border: none;
+  color: #2563eb;
+  font-size: 14px;
+  cursor: pointer;
+  margin-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+.page-title {
+  font-size: 20px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.page-subtitle {
+  color: #6b7280;
+  margin-bottom: 20px;
+}
+
+.detail-card {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.detail-header {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.meta-line {
+  color: #6b7280;
+  margin: 8px 0 16px;
+}
+
+.status-badge {
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+  display: inline-block;
+}
+.status-badge.green {
+  background: #ecfdf5;
+  color: #059669;
+}
+
+.detail-stats {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+  width: 100%;
+  gap: 20px;
+  text-align: center;
+}
+
+.detail-stats h4 {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.detail-stats h4.blue {
+  color: #2563eb;
+}
+
+.detail-stats span {
+  font-size: 13px;
+  color: #6b7280;
+}
+
+.variants-list {
+  display: flex;
+  gap: 40px;
+  padding-top: 10px;
+}
+
+.variant-item span {
+  color: #6b7280;
+  display: block;
+}
+.variant-item strong {
+  font-weight: 600;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 40px 0;
+  color: #9ca3af;
+}
+
+.empty-icon {
+  display: block;
+  font-size: 24px;
+  margin-bottom: 8px;
+}
