@@ -1,4 +1,4 @@
-import { Menu } from "lucide-react";
+import { PanelLeft } from "lucide-react";
 import "./style/Navbar.css";
 
 const Navbar = ({ onToggleSidebar }) => {
@@ -11,10 +11,11 @@ const Navbar = ({ onToggleSidebar }) => {
           border: "none",
           cursor: "pointer",
           display: "flex",
-          alignItems: "center",
+          alignItems: "end",
+
         }}
       >
-        <Menu size={22} />
+        <PanelLeft size={18} />
       </button>
       <ul>
         <li className="active">Product</li>

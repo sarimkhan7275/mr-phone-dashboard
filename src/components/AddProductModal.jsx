@@ -3,7 +3,6 @@ import { Upload } from "lucide-react"
 import "./style/AddProductModal.css"
 
 const AddProductModal = ({ isOpen, onClose, onAddProduct }) => {
-
   const [category, setCategory] = useState("mobile")
   const [brandName, setBrandName] = useState("")
   const [modelName, setModelName] = useState("")
@@ -15,9 +14,9 @@ const AddProductModal = ({ isOpen, onClose, onAddProduct }) => {
   const [variants, setVariants] = useState([
     { id: Date.now(), name: "", value: "" },
   ])
+  const [thumbnail, setThumbnail] = useState(null)
 
-
-  // handle varint changes
+  // handle variant changes
   const handleVariantChange = (id, field, value) => {
     setVariants((prev) =>
       prev.map((v) => (v.id === id ? { ...v, [field]: value } : v))
@@ -30,6 +29,16 @@ const AddProductModal = ({ isOpen, onClose, onAddProduct }) => {
 
   const removeVariant = (id) => {
     setVariants((prev) => prev.filter((v) => v.id !== id))
+  }
+
+  const handleFileChange = (e) => {
+    const file = e.target.files[0]
+    if (file) {
+      setThumbnail({
+        file,
+        preview: URL.createObjectURL(file),
+      })
+    }
   }
 
   const handleSubmit = (e) => {
@@ -46,9 +55,10 @@ const AddProductModal = ({ isOpen, onClose, onAddProduct }) => {
       newDevice,
       usedDevice,
       variants,
-    }  
-    onAddProduct(product)
+      thumbnail: thumbnail ? thumbnail.file : null, 
+    }
 
+    onAddProduct(product)
     onClose()
   }
 
@@ -66,7 +76,7 @@ const AddProductModal = ({ isOpen, onClose, onAddProduct }) => {
         {/* form */}
         <div className="modal-body">
           <div className="form-grid">
-            {/* category */}
+            {/* category + brand */}
             <div>
               <div className="form-group" style={{ marginBottom: "10px" }}>
                 <label>Category *</label>
@@ -79,7 +89,6 @@ const AddProductModal = ({ isOpen, onClose, onAddProduct }) => {
                 </select>
               </div>
 
-              {/* Brand name */}
               <div className="form-group">
                 <label>Brand Name *</label>
                 <input
@@ -91,16 +100,32 @@ const AddProductModal = ({ isOpen, onClose, onAddProduct }) => {
               </div>
             </div>
 
-            {/* dummy image */}
+            {/* thumbnail */}
             <div className="form-group upload">
               <label>Thumbnail Image</label>
-              <div className="upload-box">
-                <Upload size={20} color="#2563eb" />
-                <span>The image should be JPG, PNG, WEBP format</span>
-              </div>
+              <label className="upload-box">
+                {thumbnail ? (
+                  <img
+                    src={thumbnail.preview}
+                    alt="Preview"
+                    className="thumbnail-preview"
+                  />
+                ) : (
+                  <>
+                    <Upload size={20} color="#2563eb" />
+                    <span>The image should be JPG, PNG, WEBP format</span>
+                  </>
+                )}
+                <input
+                  type="file"
+                  accept="image/*"
+                  style={{ display: "none" }}
+                  onChange={handleFileChange}
+                />
+              </label>
             </div>
 
-            {/* model name */}
+            {/* model */}
             <div className="form-group">
               <label>Model Name *</label>
               <input
@@ -144,11 +169,9 @@ const AddProductModal = ({ isOpen, onClose, onAddProduct }) => {
               />
             </div>
 
-            {/* Device Type */}
+            {/* device type */}
             <div className="form-group checkbox-row">
-              <label
-                style={{ display: "flex", alignItems: "center", gap: "3px" }}
-              >
+              <label style={{ display: "flex", alignItems: "center", gap: "3px" }}>
                 <input
                   type="checkbox"
                   checked={newDevice}
@@ -156,9 +179,7 @@ const AddProductModal = ({ isOpen, onClose, onAddProduct }) => {
                 />
                 New Device
               </label>
-              <label
-                style={{ display: "flex", alignItems: "center", gap: "3px" }}
-              >
+              <label style={{ display: "flex", alignItems: "center", gap: "3px" }}>
                 <input
                   type="checkbox"
                   checked={usedDevice}
@@ -168,10 +189,17 @@ const AddProductModal = ({ isOpen, onClose, onAddProduct }) => {
               </label>
             </div>
 
-            {/* Variant and Features */}
+            {/* variants */}
             <div className="form-group variant-row">
-              <div style={{display:"flex", justifyContent:"space-between", alignItems : "center", marginBottom : "20px"}} > 
-                <label style={{fontSize : "16px"}} >Variant Features</label>
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                  marginBottom: "20px",
+                }}
+              >
+                <label style={{ fontSize: "16px" }}>Variant Features</label>
                 <button
                   type="button"
                   className="variant-btn"
@@ -209,7 +237,7 @@ const AddProductModal = ({ isOpen, onClose, onAddProduct }) => {
           </div>
         </div>
 
-        {/* Footer */}
+        {/* footer */}
         <div className="modal-footer">
           <button type="button" className="cancel-btn" onClick={onClose}>
             Cancel

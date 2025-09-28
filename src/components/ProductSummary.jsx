@@ -1,4 +1,4 @@
-import { Box, Layers, Tag, Plus } from "lucide-react"
+import { Box, Layers, Tag, Plus, BadgeCent } from "lucide-react"
 import "./style/ProductSummary.css";
 
 
@@ -18,7 +18,7 @@ import "./style/ProductSummary.css";
     {
       label: "Total Inventory Value",
       value: "€8915.2",
-      icon: <Layers size={20} color="#fbbf24" />,
+      icon: <BadgeCent size={20} color="#fbbf24" />,
       bg: "#fef3c7",
     },
     {
